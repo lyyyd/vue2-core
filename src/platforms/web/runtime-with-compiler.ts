@@ -17,12 +17,13 @@ const idToTemplate = cached(id => {
   return el && el.innerHTML
 })
 
+// 保留 Vue 实例的 $mount 方法
 const mount = Vue.prototype.$mount
 Vue.prototype.$mount = function (
   el?: string | Element,
-  hydrating?: boolean
+  hydrating?: boolean // 非ssr情况下为 false，ssr 时候为true
 ): Component {
-  el = el && query(el)
+  el = el && query(el) // 获取 el 对象
 
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
@@ -35,11 +36,14 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
+  // 把 template/el 转换成 render 函数
   if (!options.render) {
     let template = options.template
     if (template) {
       if (typeof template === 'string') {
+        // 如果模板是 id 选择器
         if (template.charAt(0) === '#') {
+          // 获取对应的 DOM 对象的 innerHTML
           template = idToTemplate(template)
           /* istanbul ignore if */
           if (__DEV__ && !template) {
@@ -50,14 +54,17 @@ Vue.prototype.$mount = function (
           }
         }
       } else if (template.nodeType) {
+        // 如果模板是元素，返回元素的 innerHTML
         template = template.innerHTML
       } else {
         if (__DEV__) {
           warn('invalid template option:' + template, this)
         }
+        // 否则返回当前实例
         return this
       }
     } else if (el) {
+      // 如果没有 template，获取el的 outerHTML 作为模板
       // @ts-expect-error
       template = getOuterHTML(el)
     }
@@ -67,6 +74,7 @@ Vue.prototype.$mount = function (
         mark('compile')
       }
 
+      // 把 template 转换成 render 函数
       const { render, staticRenderFns } = compileToFunctions(
         template,
         {
@@ -88,6 +96,7 @@ Vue.prototype.$mount = function (
       }
     }
   }
+  // 调用 mount 方法，渲染 DOM
   return mount.call(this, el, hydrating)
 }
 
