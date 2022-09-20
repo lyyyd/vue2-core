@@ -18,6 +18,7 @@ const idToTemplate = cached(id => {
 })
 
 // 保留 Vue 实例的 $mount 方法
+// 去浏览器调试debug $mount的调用堆栈情况, 就能知道什么时间点调用了$mount
 const mount = Vue.prototype.$mount
 Vue.prototype.$mount = function (
   el?: string | Element,
