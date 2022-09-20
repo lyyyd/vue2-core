@@ -37,9 +37,11 @@ export function initRender(vm: Component) {
   // args order: tag, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
   // @ts-expect-error
+  // 对编译生成的 render 进行渲染的方法
   vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
   // normalization is always applied for the public version, used in
   // user-written render functions.
+  // 对手写 render 函数进行渲染的方法
   // @ts-expect-error
   vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 
