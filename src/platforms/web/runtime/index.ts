@@ -1,3 +1,13 @@
+/*
+ * @Author: yanding.li David.Jackson.Lyd@gmail.com
+ * @Date: 2022-09-20 21:42:12
+ * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2022-09-20 22:24:52
+ * @FilePath: \vue2-core\src\platforms\web\runtime\index.ts
+ * @Description:
+ *
+ * Copyright (c) 2022 by yanding.li David.Jackson.Lyd@gmail.com, All Rights Reserved.
+ */
 import Vue from 'core/index'
 import config from 'core/config'
 import { extend, noop } from 'shared/util'
@@ -19,6 +29,8 @@ import platformComponents from './components/index'
 import type { Component } from 'types/component'
 
 // install platform specific utils
+// 判断是否是关键属性(表单元素的 input/checked/selected/muted)
+// 如果是这些属性，设置el.props属性(属性不设置到标签上)
 Vue.config.mustUseProp = mustUseProp
 Vue.config.isReservedTag = isReservedTag
 Vue.config.isReservedAttr = isReservedAttr
