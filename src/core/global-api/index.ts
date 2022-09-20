@@ -1,3 +1,13 @@
+/*
+ * @Author: yanding.li David.Jackson.Lyd@gmail.com
+ * @Date: 2022-09-20 21:42:12
+ * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2022-09-20 22:29:45
+ * @FilePath: \vue2-core\src\core\global-api\index.ts
+ * @Description:
+ *
+ * Copyright (c) 2022 by yanding.li David.Jackson.Lyd@gmail.com, All Rights Reserved.
+ */
 import config from '../config'
 import { initUse } from './use'
 import { initMixin } from './mixin'
@@ -28,11 +38,13 @@ export function initGlobalAPI(Vue: GlobalAPI) {
       )
     }
   }
+  // 初始化 Vue.config 对象
   Object.defineProperty(Vue, 'config', configDef)
 
   // exposed util methods.
   // NOTE: these are not considered part of the public API - avoid relying on
   // them unless you are aware of the risk.
+  // 这些工具方法不视作全局API的一部分，除非你已经意识到某些风险，否则不要去依赖他们
   Vue.util = {
     warn,
     extend,
@@ -40,16 +52,20 @@ export function initGlobalAPI(Vue: GlobalAPI) {
     defineReactive
   }
 
+  // 静态方法 set/delete/nextTick
   Vue.set = set
   Vue.delete = del
   Vue.nextTick = nextTick
 
   // 2.6 explicit observable API
+  // 让一个对象可响应
   Vue.observable = <T>(obj: T): T => {
     observe(obj)
     return obj
   }
 
+  // 初始化 Vue.options 对象，并给其扩展
+  // components/directives/filters
   Vue.options = Object.create(null)
   ASSET_TYPES.forEach(type => {
     Vue.options[type + 's'] = Object.create(null)
@@ -59,10 +75,15 @@ export function initGlobalAPI(Vue: GlobalAPI) {
   // components with in Weex's multi-instance scenarios.
   Vue.options._base = Vue
 
+  // 设置 keep-alive 组件
   extend(Vue.options.components, builtInComponents)
 
+  // 注册 Vue.use() 用来注册插件
   initUse(Vue)
+  // 注册 Vue.mixin() 实现混入
   initMixin(Vue)
+  // 注册 Vue.extend() 基于传入的options返回一个组件的构造函数
   initExtend(Vue)
+  // 注册 Vue.directive()、 Vue.component()、Vue.filter()
   initAssetRegisters(Vue)
 }
