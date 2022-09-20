@@ -1,3 +1,13 @@
+/*
+ * @Author: yanding.li David.Jackson.Lyd@gmail.com
+ * @Date: 2022-09-20 21:42:12
+ * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2022-09-20 22:35:31
+ * @FilePath: \vue2-core\src\core\instance\index.ts
+ * @Description:
+ *
+ * Copyright (c) 2022 by yanding.li David.Jackson.Lyd@gmail.com, All Rights Reserved.
+ */
 import { initMixin } from './init'
 import { stateMixin } from './state'
 import { renderMixin } from './render'
