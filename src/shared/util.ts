@@ -58,6 +58,7 @@ export function toRawType(value: any): string {
 /**
  * Strict object type check. Only returns true
  * for plain JavaScript objects.
+ * 是否是原始的对象
  */
 export function isPlainObject(obj: any): boolean {
   return _toString.call(obj) === '[object Object]'
@@ -228,6 +229,7 @@ export function toArray(list: any, start?: number): Array<any> {
 
 /**
  * Mix properties into target object.
+ * 浅拷贝
  */
 export function extend(
   to: Record<PropertyKey, any>,
