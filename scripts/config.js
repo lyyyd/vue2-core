@@ -116,6 +116,7 @@ const builds = {
     banner
   },
   // Runtime+compiler development build (Browser)
+  // 开发环境的入口文件在这里定义的,  npm run dev
   'full-dev': {
     entry: resolve('web/entry-runtime-with-compiler.ts'),
     dest: resolve('dist/vue.js'),
@@ -295,7 +296,8 @@ function genConfig(name) {
 
   return config
 }
-
+// 判断环境变量是否有 TARGET
+// 如果有的话 使用 genConfig() 生成 rollup 配置文件
 if (process.env.TARGET) {
   module.exports = genConfig(process.env.TARGET)
 } else {
