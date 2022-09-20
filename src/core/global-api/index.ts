@@ -2,7 +2,7 @@
  * @Author: yanding.li David.Jackson.Lyd@gmail.com
  * @Date: 2022-09-20 21:42:12
  * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2022-09-20 22:29:45
+ * @LastEditTime: 2022-09-20 22:50:15
  * @FilePath: \vue2-core\src\core\global-api\index.ts
  * @Description:
  *
@@ -27,7 +27,7 @@ import {
 } from '../util/index'
 import type { GlobalAPI } from 'types/global-api'
 
-export function initGlobalAPI(Vue: GlobalAPI) {
+export function  initGlobalAPI(Vue: GlobalAPI) {
   // config
   const configDef: Record<string, any> = {}
   configDef.get = () => config
@@ -75,7 +75,7 @@ export function initGlobalAPI(Vue: GlobalAPI) {
   // components with in Weex's multi-instance scenarios.
   Vue.options._base = Vue
 
-  // 设置 keep-alive 组件
+  // 扩展 keep-alive 组件, 到Vue.options.components
   extend(Vue.options.components, builtInComponents)
 
   // 注册 Vue.use() 用来注册插件
