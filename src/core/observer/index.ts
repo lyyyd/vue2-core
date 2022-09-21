@@ -199,7 +199,7 @@ export function defineReactive(
       return isRef(value) && !shallow ? value.value : value
     },
     set: function reactiveSetter(newVal) {
-      // 如果预定义的 getter 存在则 value 等于getter 调用的返回值.....
+      // 如果预定义的 getter 存在则 value 等于getter 调用的返回值
       // 否则直接赋予属性值
       const value = getter ? getter.call(obj) : val
       // 如果新值等于旧值或者新值旧值为NaN则不执行
