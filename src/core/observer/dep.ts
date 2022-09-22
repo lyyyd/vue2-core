@@ -2,7 +2,7 @@
  * @Author: yanding.li David.Jackson.Lyd@gmail.com
  * @Date: 2022-09-20 21:42:12
  * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2022-09-22 21:41:04
+ * @LastEditTime: 2022-09-22 21:43:36
  * @FilePath: \vue2-core\src\core\observer\dep.ts
  * @Description:
  *
@@ -68,7 +68,7 @@ export default class Dep {
   // 发布通知
   notify(info?: DebuggerEventExtraInfo) {
     // stabilize the subscriber list first
-    const subs = this.subs.slice()
+    const subs = this.subs.slice() // 克隆数组
     if (__DEV__ && !config.async) {
       // subs aren't sorted in scheduler if not running async
       // we need to sort them now to make sure they fire in correct
