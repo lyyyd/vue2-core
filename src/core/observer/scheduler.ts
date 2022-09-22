@@ -99,7 +99,7 @@ function flushSchedulerQueue() {
   for (index = 0; index < queue.length; index++) {
     watcher = queue[index]
     if (watcher.before) {
-      watcher.before()  // before 钩子函数
+      watcher.before()  // watcher更新试图之前, before 钩子函数
     }
     id = watcher.id
     has[id] = null
