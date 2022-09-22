@@ -41,16 +41,20 @@ export default class Dep {
     this.subs = []
   }
 
+  // 添加新的订阅者 watcher 对象
   addSub(sub: DepTarget) {
     this.subs.push(sub)
   }
 
+  // 移除订阅者
   removeSub(sub: DepTarget) {
     remove(this.subs, sub)
   }
 
+  // 将观察对象和 watcher 建立依赖
   depend(info?: DebuggerEventExtraInfo) {
     if (Dep.target) {
+      // 如果 target 存在，把 dep 对象添加到 watcher 的依赖中
       Dep.target.addDep(this)
       if (__DEV__ && info && Dep.target.onTrack) {
         Dep.target.onTrack({
@@ -61,6 +65,7 @@ export default class Dep {
     }
   }
 
+  // 发布通知
   notify(info?: DebuggerEventExtraInfo) {
     // stabilize the subscriber list first
     const subs = this.subs.slice()
