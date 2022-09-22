@@ -198,7 +198,7 @@ export function mountComponent(
     }
   } else {
     updateComponent = () => {
-      // 讲虚拟DOM更新到视图
+      // 将虚拟DOM更新到视图
       vm._update(vm._render(), hydrating)
     }
   }
