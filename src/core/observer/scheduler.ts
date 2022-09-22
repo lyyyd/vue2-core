@@ -92,7 +92,7 @@ function flushSchedulerQueue() {
   // 3。如果一个组件在父组件的监视程序运行期间被销毁，
   //它的观察者可以被跳过。
 
-  queue.sort(sortCompareFn) // watcher对象的队列排序
+  queue.sort(sortCompareFn) // watcher对象的队列排序, 按照id 从小到大排序
 
   // do not cache length because more watchers might be pushed
   // as we run existing watchers
