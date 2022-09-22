@@ -2,7 +2,7 @@
  * @Author: yanding.li David.Jackson.Lyd@gmail.com
  * @Date: 2022-09-20 21:42:12
  * @LastEditors: yanding.li David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2022-09-22 21:39:58
+ * @LastEditTime: 2022-09-22 21:41:04
  * @FilePath: \vue2-core\src\core\observer\dep.ts
  * @Description:
  *
@@ -75,6 +75,7 @@ export default class Dep {
       // order
       subs.sort((a, b) => a.id - b.id)
     }
+    // 调用每个订阅者的update方法实现更新
     for (let i = 0, l = subs.length; i < l; i++) {
       if (__DEV__ && info) {
         const sub = subs[i]
@@ -89,18 +90,24 @@ export default class Dep {
   }
 }
 
+// Dep.target 用来存放目前正在使用的watcher
+// 全局唯一，并且一次也只能有一个watcher被使用
 // The current target watcher being evaluated.
 // This is globally unique because only one watcher
 // can be evaluated at a time.
 Dep.target = null
 const targetStack: Array<DepTarget | null | undefined> = []
 
+// 入栈并将当前 watcher 赋值给 Dep.target
+// 父子组件嵌套的时候先把父组件对应的 watcher 入栈，
+// 再去处理子组件的 watcher，子组件的处理完毕后，再把父组件对应的 watcher 出栈，继续操作
 export function pushTarget(target?: DepTarget | null) {
   targetStack.push(target)
   Dep.target = target
 }
 
 export function popTarget() {
+  // 出栈操作
   targetStack.pop()
   Dep.target = targetStack[targetStack.length - 1]
 }
