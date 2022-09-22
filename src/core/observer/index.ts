@@ -371,6 +371,8 @@ export function del(target: any[] | object, key: any) {
 /**
  * Collect dependencies on array elements when the array is touched, since
  * we cannot intercept array element access like property getters.
+ * 当数组被触摸时，收集数组元素的依赖关系
+ * 我们不能像属性getter那样拦截数组元素访问。
  */
 function dependArray(value: Array<any>) {
   for (let e, i = 0, l = value.length; i < l; i++) {
