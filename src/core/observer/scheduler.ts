@@ -143,7 +143,7 @@ function callUpdatedHooks(queue: Watcher[]) {
     const watcher = queue[i]
     const vm = watcher.vm
     if (vm && vm._watcher === watcher && vm._isMounted && !vm._isDestroyed) {
-      callHook(vm, 'updated')
+      callHook(vm, 'updated') // 触发updated 的生命周期钩子函数
     }
   }
 }
