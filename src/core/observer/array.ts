@@ -40,7 +40,9 @@ methodsToPatch.forEach(function (method) {
   const original = arrayProto[method]
   // 调用 Object.defineProperty() 重新定义修改数组的方法
   def(arrayMethods, method, function mutator(...args) {
+    // 执行数组的原始方法
     const result = original.apply(this, args)
+    // 获取数组对象的 ob 对象
     const ob = this.__ob__
     let inserted
     switch (method) {
@@ -52,6 +54,7 @@ methodsToPatch.forEach(function (method) {
         inserted = args.slice(2)
         break
     }
+    // 对插入的新元素，重新遍历数组元素设置为响应式数据
     if (inserted) ob.observeArray(inserted)
     // notify change
     if (__DEV__) {
