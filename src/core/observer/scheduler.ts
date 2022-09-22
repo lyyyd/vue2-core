@@ -173,6 +173,7 @@ function callActivatedHooks(queue) {
  */
 export function queueWatcher(watcher: Watcher) {
   const id = watcher.id
+  // 有id, 说明被处理过了直接返回
   if (has[id] != null) {
     return
   }
