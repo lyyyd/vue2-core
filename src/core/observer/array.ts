@@ -64,6 +64,7 @@ methodsToPatch.forEach(function (method) {
         key: method
       })
     } else {
+      // 调用了修改数组的方法，调用数组的ob对象发送通知
       ob.dep.notify()
     }
     return result
