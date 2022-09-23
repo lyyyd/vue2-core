@@ -65,6 +65,7 @@ function markStatic(node: ASTNode) {
         node.static = false
       }
     }
+    // 处理条件渲染的节点
     if (node.ifConditions) {
       for (let i = 1, l = node.ifConditions.length; i < l; i++) {
         const block = node.ifConditions[i].block
