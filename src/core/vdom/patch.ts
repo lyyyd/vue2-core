@@ -856,7 +856,9 @@ export function createPatchFunction(backend) {
   // core中的createPatchFunction (backend), const { modules, nodeOps } = backend
   // core中方法和平台无关，传入两个参数后，可以在上面的函数中使用这两个参数
   return function patch(oldVnode, vnode, hydrating, removeOnly) {
+    // 新的 VNode 不存在
     if (isUndef(vnode)) {
+      // 老的 VNode 存在，执行 Destroy 钩子函数
       if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
       return
     }
@@ -864,11 +866,14 @@ export function createPatchFunction(backend) {
     let isInitialPatch = false
     const insertedVnodeQueue: any[] = []
 
+    // 老的 VNode 不存在
     if (isUndef(oldVnode)) {
       // empty mount (likely as component), create new root element
       isInitialPatch = true
+      // 创建新的 VNode
       createElm(vnode, insertedVnodeQueue)
     } else {
+      // 新的和老的 VNode 都存在，更新
       const isRealElement = isDef(oldVnode.nodeType)
       if (!isRealElement && sameVnode(oldVnode, vnode)) {
         // patch existing root node
