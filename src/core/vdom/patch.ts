@@ -67,6 +67,8 @@ export function createPatchFunction(backend) {
   let i, j
   const cbs: any = {}
 
+  // modules 节点的属性/事件/样式的操作
+  // nodeOps 节点操作
   const { modules, nodeOps } = backend
 
   for (i = 0; i < hooks.length; ++i) {
