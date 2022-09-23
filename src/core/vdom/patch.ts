@@ -532,6 +532,7 @@ export function createPatchFunction(backend) {
         } else {
           vnodeToMove = oldCh[idxInOld]
           if (sameVnode(vnodeToMove, newStartVnode)) {
+            // 执行 patchVnode，并且将找到的旧节点移动到最前面
             patchVnode(
               vnodeToMove,
               newStartVnode,
