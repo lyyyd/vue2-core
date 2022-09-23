@@ -499,6 +499,8 @@ export function createPatchFunction(backend) {
         newEndVnode = newCh[--newEndIdx]
       } else if (sameVnode(oldEndVnode, newStartVnode)) {
         // Vnode moved left
+        // oldStartVnode 和 newEndVnode 相同(sameVnode)
+        // 进行 patchVnode，把 oldStartVnode 移动到最后
         patchVnode(
           oldEndVnode,
           newStartVnode,
@@ -560,6 +562,7 @@ export function createPatchFunction(backend) {
         newStartVnode = newCh[++newStartIdx]
       }
     }
+    // 当结束时 oldStartIdx > oldEndIdx，旧节点遍历完，但是新节点还没有
     if (oldStartIdx > oldEndIdx) {
       refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm
       addVnodes(
