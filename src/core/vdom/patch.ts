@@ -222,7 +222,9 @@ export function createPatchFunction(backend) {
     }
     vnode.elm = vnode.componentInstance.$el
     if (isPatchable(vnode)) {
+      // 调用钩子函数
       invokeCreateHooks(vnode, insertedVnodeQueue)
+      // 设置局部作用于样式
       setScope(vnode)
     } else {
       // empty component root.
@@ -296,6 +298,7 @@ export function createPatchFunction(backend) {
   }
 
   function invokeCreateHooks(vnode, insertedVnodeQueue) {
+    // 调用 VNode 的钩子函数
     for (let i = 0; i < cbs.create.length; ++i) {
       cbs.create[i](emptyNode, vnode)
     }
