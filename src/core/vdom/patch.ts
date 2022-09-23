@@ -513,6 +513,11 @@ export function createPatchFunction(backend) {
         oldEndVnode = oldCh[--oldEndIdx]
         newStartVnode = newCh[++newStartIdx]
       } else {
+        // 以上四种情况都不满足
+        // newStartNode 依次和旧的节点比较
+
+        // 从新的节点开头获取一个，去老节点中查找相同节点
+        // 先找新开始节点的key和老节点相同的索引，如果没找到再通过sameVnode找
         if (isUndef(oldKeyToIdx))
           oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
         idxInOld = isDef(newStartVnode.key)
