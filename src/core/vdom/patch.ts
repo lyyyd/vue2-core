@@ -518,8 +518,10 @@ export function createPatchFunction(backend) {
         idxInOld = isDef(newStartVnode.key)
           ? oldKeyToIdx[newStartVnode.key]
           : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx)
+        // 如果没有找到
         if (isUndef(idxInOld)) {
           // New element
+          // 创建节点并插入到最前面
           createElm(
             newStartVnode,
             insertedVnodeQueue,
