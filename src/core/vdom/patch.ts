@@ -850,6 +850,11 @@ export function createPatchFunction(backend) {
     }
   }
 
+  // 函数柯里化，让一个函数返回一个函数
+  // createPatchFunction({ nodeOps, modules }) 传入平台相关的两个参数
+
+  // core中的createPatchFunction (backend), const { modules, nodeOps } = backend
+  // core中方法和平台无关，传入两个参数后，可以在上面的函数中使用这两个参数
   return function patch(oldVnode, vnode, hydrating, removeOnly) {
     if (isUndef(vnode)) {
       if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
