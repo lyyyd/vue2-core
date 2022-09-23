@@ -295,6 +295,8 @@ export function parse(template: string, options: CompilerOptions): ASTElement {
         processRawAttrs(element)
       } else if (!element.processed) {
         // structural directives
+        // 结构化的指令
+        // v-for
         processFor(element)
         processIf(element)
         processOnce(element)
