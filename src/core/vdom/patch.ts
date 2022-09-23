@@ -676,7 +676,10 @@ export function createPatchFunction(backend) {
       // 用户的自定义钩子
       if (isDef((i = data.hook)) && isDef((i = i.update))) i(oldVnode, vnode)
     }
+    // 新节点没有文本
     if (isUndef(vnode.text)) {
+      // 老节点和老节点都有有子节点
+      // 对子节点进行 diff 操作，调用 updateChildren
       if (isDef(oldCh) && isDef(ch)) {
         if (oldCh !== ch)
           updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
