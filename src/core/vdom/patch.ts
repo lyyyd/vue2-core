@@ -648,6 +648,8 @@ export function createPatchFunction(backend) {
     // note we only do this if the vnode is cloned -
     // if the new node is not cloned it means the render functions have been
     // reset by the hot-reload-api and we need to do a proper re-render.
+
+    // 如果新旧 VNode 都是静态的，那么只需要替换componentInstance
     if (
       isTrue(vnode.isStatic) &&
       isTrue(oldVnode.isStatic) &&
@@ -661,13 +663,17 @@ export function createPatchFunction(backend) {
     let i
     const data = vnode.data
     if (isDef(data) && isDef((i = data.hook)) && isDef((i = i.prepatch))) {
+
       i(oldVnode, vnode)
     }
 
     const oldCh = oldVnode.children
     const ch = vnode.children
     if (isDef(data) && isPatchable(vnode)) {
+      // 调用 cbs 中的钩子函数，操作节点的属性/样式/事件....
       for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+
+      // 用户的自定义钩子
       if (isDef((i = data.hook)) && isDef((i = i.update))) i(oldVnode, vnode)
     }
     if (isUndef(vnode.text)) {
