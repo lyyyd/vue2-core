@@ -548,6 +548,7 @@ export function createPatchFunction(backend) {
               )
           } else {
             // same key but different element. treat as new element
+            // 如果key相同，但是是不同的元素，创建新元素
             createElm(
               newStartVnode,
               insertedVnodeQueue,
