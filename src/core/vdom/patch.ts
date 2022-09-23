@@ -448,11 +448,15 @@ export function createPatchFunction(backend) {
       checkDuplicateKeys(newCh)
     }
 
+    // diff 算法
+    // 当新节点和旧节点都没有遍历完成
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
       if (isUndef(oldStartVnode)) {
         oldStartVnode = oldCh[++oldStartIdx] // Vnode has been moved left
       } else if (isUndef(oldEndVnode)) {
         oldEndVnode = oldCh[--oldEndIdx]
+        // oldStartVnode 和 newStartVnode 相同(sameVnode)
+        // 直接将该 VNode 节点进行 patchVnode
       } else if (sameVnode(oldStartVnode, newStartVnode)) {
         patchVnode(
           oldStartVnode,
