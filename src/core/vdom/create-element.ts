@@ -93,6 +93,7 @@ export function _createElement(
   if (typeof tag === 'string') {
     let Ctor
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag)
+    // 是否是 html 的保留标签
     if (config.isReservedTag(tag)) {
       // platform built-in elements
       if (
