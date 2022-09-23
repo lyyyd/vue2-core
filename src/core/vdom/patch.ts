@@ -469,6 +469,7 @@ export function createPatchFunction(backend) {
         oldStartVnode = oldCh[++oldStartIdx]
         newStartVnode = newCh[++newStartIdx]
       } else if (sameVnode(oldEndVnode, newEndVnode)) {
+        // 直接将该 VNode 节点进行 patchVnode
         patchVnode(
           oldEndVnode,
           newEndVnode,
@@ -476,6 +477,7 @@ export function createPatchFunction(backend) {
           newCh,
           newEndIdx
         )
+        // 获取下一组结束节点
         oldEndVnode = oldCh[--oldEndIdx]
         newEndVnode = newCh[--newEndIdx]
       } else if (sameVnode(oldStartVnode, newEndVnode)) {
