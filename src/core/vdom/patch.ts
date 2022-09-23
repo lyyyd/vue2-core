@@ -146,6 +146,7 @@ export function createPatchFunction(backend) {
     const data = vnode.data
     const children = vnode.children
     const tag = vnode.tag
+    // VNode是标签的情况
     if (isDef(tag)) {
       if (__DEV__) {
         if (data && data.pre) {
@@ -162,11 +163,11 @@ export function createPatchFunction(backend) {
           )
         }
       }
-
+      // vnode是否有ns 命名空间
       vnode.elm = vnode.ns
         ? nodeOps.createElementNS(vnode.ns, tag)
         : nodeOps.createElement(tag, vnode)
-      setScope(vnode)
+      setScope(vnode) // 设置样式作用域
 
       createChildren(vnode, children, insertedVnodeQueue)
       if (isDef(data)) {
@@ -866,7 +867,7 @@ export function createPatchFunction(backend) {
     let isInitialPatch = false
     const insertedVnodeQueue: any[] = []
 
-    // 老的 VNode 不存在
+    // 老的 VNode 存在
     if (isUndef(oldVnode)) {
       // empty mount (likely as component), create new root element
       isInitialPatch = true
