@@ -171,17 +171,21 @@ export function createPatchFunction(backend) {
 
       createChildren(vnode, children, insertedVnodeQueue)
       if (isDef(data)) {
+        // 触发create钩子函数
         invokeCreateHooks(vnode, insertedVnodeQueue)
       }
+      // vnode.elm插入到 parentElm
       insert(parentElm, vnode.elm, refElm)
 
       if (__DEV__ && data && data.pre) {
         creatingElmInVPre--
       }
+    // 注释节点
     } else if (isTrue(vnode.isComment)) {
       vnode.elm = nodeOps.createComment(vnode.text)
       insert(parentElm, vnode.elm, refElm)
     } else {
+      // 文本节点
       vnode.elm = nodeOps.createTextNode(vnode.text)
       insert(parentElm, vnode.elm, refElm)
     }
@@ -423,7 +427,7 @@ export function createPatchFunction(backend) {
 
   // diff 算法
   // 更新新旧节点的子节点
-  function updateChildren(
+  function  updateChildren(
     parentElm,
     oldCh,
     newCh,
@@ -617,7 +621,7 @@ export function createPatchFunction(backend) {
     }
   }
 
-  function patchVnode(
+  function  patchVnode(
     oldVnode,
     vnode,
     insertedVnodeQueue,
