@@ -530,7 +530,9 @@ export function createPatchFunction(backend) {
             newStartIdx
           )
         } else {
+          // 获取要移动的老节点
           vnodeToMove = oldCh[idxInOld]
+          // 如果使用 newStartNode 找到相同的老节点
           if (sameVnode(vnodeToMove, newStartVnode)) {
             // 执行 patchVnode，并且将找到的旧节点移动到最前面
             patchVnode(
