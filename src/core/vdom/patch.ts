@@ -420,6 +420,8 @@ export function createPatchFunction(backend) {
     }
   }
 
+  // diff 算法
+  // 更新新旧节点的子节点
   function updateChildren(
     parentElm,
     oldCh,
