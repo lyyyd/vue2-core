@@ -115,10 +115,13 @@ export function _createElement(
         undefined,
         context
       )
+    // 判断是否是 自定义组件
     } else if (
       (!data || !data.pre) &&
       isDef((Ctor = resolveAsset(context.$options, 'components', tag)))
     ) {
+      // 查找自定义组件构造函数的声明
+      // 根据 Ctor 创建组件的 VNode
       // component
       vnode = createComponent(Ctor, data, context, children, tag)
     } else {
