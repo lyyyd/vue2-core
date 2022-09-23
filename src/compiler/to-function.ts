@@ -50,7 +50,7 @@ export function createCompileToFunctionFn(compile: Function): Function {
 
     // check cache
     // 1. 读取缓存中的 CompiledFunctionResult 对象，如果有直接返回
-    const key = options.delimiters
+    const key = options.  // delimiters改变插值表达式所使用的符号
       ? String(options.delimiters) + template
       : template
     if (cache[key]) {
