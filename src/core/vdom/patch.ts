@@ -465,6 +465,7 @@ export function createPatchFunction(backend) {
           newCh,
           newStartIdx
         )
+        // 获取下一组开始节点
         oldStartVnode = oldCh[++oldStartIdx]
         newStartVnode = newCh[++newStartIdx]
       } else if (sameVnode(oldEndVnode, newEndVnode)) {
