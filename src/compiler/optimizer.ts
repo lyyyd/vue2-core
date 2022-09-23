@@ -112,6 +112,7 @@ function markStaticRoots(node: ASTNode, isInFor: boolean) {
 }
 
 function isStatic(node: ASTNode): boolean {
+  // 表达式
   if (node.type === 2) {
     // expression
     return false
@@ -125,9 +126,9 @@ function isStatic(node: ASTNode): boolean {
     (!node.hasBindings && // no dynamic bindings
       !node.if &&
       !node.for && // not v-if or v-for or v-else
-      !isBuiltInTag(node.tag) && // not a built-in
-      isPlatformReservedTag(node.tag) && // not a component
-      !isDirectChildOfTemplateFor(node) &&
+      !isBuiltInTag(node.tag) && // not a built-in 不能是内置组件
+      isPlatformReservedTag(node.tag) && // not a component 不能是组件
+      !isDirectChildOfTemplateFor(node) && // 不能是v-for下的直接子节点
       Object.keys(node).every(isStaticKey))
   )
 }
