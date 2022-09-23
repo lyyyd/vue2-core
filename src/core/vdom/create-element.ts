@@ -83,8 +83,10 @@ export function _createElement(
     children.length = 0
   }
   if (normalizationType === ALWAYS_NORMALIZE) {
+    // 返回一维数组，处理用户手写的 render
     children = normalizeChildren(children)
   } else if (normalizationType === SIMPLE_NORMALIZE) {
+    // 把二维数组，转换成一维数组
     children = simpleNormalizeChildren(children)
   }
   let vnode, ns
