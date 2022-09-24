@@ -97,6 +97,8 @@ export function genElement(el: ASTElement, state: CodegenState): string {
       let data
       const maybeComponent = state.maybeComponent(el)
       if (!el.plain || (el.pre && maybeComponent)) {
+        // 生成元素的属性/指令/事件等
+        // 处理各种指令，包括 genDirectives（model/text/html）
         data = genData(el, state)
       }
 
@@ -664,5 +666,7 @@ function genProps(props: Array<ASTAttr>): string {
 
 // #3895, #4268
 function transformSpecialNewlines(text: string): string {
+  // 行分隔符
+  // 段落分隔符
   return text.replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')
 }
