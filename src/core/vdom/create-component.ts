@@ -32,7 +32,7 @@ export function getComponentName(options: ComponentOptions) {
   return options.name || options.__name || options._componentTag
 }
 
-// inline hooks to be invoked on component VNodes during patch.
+// inline hooks to be invoked on component VNodes during patch
 const componentVNodeHooks = {
   init(vnode: VNodeWithData, hydrating: boolean): boolean | void {
     if (
