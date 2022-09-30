@@ -18,7 +18,8 @@ read -p  "请填写commit提交的信息:" msg
   # git add -A && git commit -m "$msg"
   git add -A && git commit -m "record.md"
   echo "commit完毕，开始拉取以及推送代码\n"
-  git pull && git push
+  # git pull && git push
+  git push
   # 判断上一条命令是否成功
   if [ $? -eq 0 ]; then
     echo "\n\n流程结束，完成提交。"
