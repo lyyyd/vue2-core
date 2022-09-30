@@ -176,7 +176,7 @@ export function createComponent(
   // child component listeners instead of DOM listeners
   const listeners = data.on
   // replace with listeners with .native modifier
-  // so it gets processed during parent component patch...
+  // so it gets processed during parent component patch....
   data.on = data.nativeOn
 
   // @ts-expect-error
