@@ -8,7 +8,7 @@ SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 echo "正在改变文件夹路径到：$SHELL_FOLDER \n"
 cd $SHELL_FOLDER
 
-read -p  "请填写commit提交的信息:" msg
+# read -p  "请填写commit提交的信息:" msg
 # 空值判断
 # if [ ! $msg ]; then  
 #  echo "终止提交，因为提交说明为空。"
